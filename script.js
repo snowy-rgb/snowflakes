@@ -11,10 +11,12 @@ const snows = [];
 let score = 0;
 let lastTime = 0;
 
-// 눈 생성
+// 눈 
 function spawnSnow() {
+  // 눈이 공 위쪽에서 생성되도록, 공 x 좌표 기준 +- 범위 지정
+  const range = 50; // 공 좌우 ±50px 범위
   snows.push({
-    x: Math.random() * canvas.width,
+    x: ball.x + (Math.random() * range * 2 - range), // ball.x - range ~ ball.x + range
     y: -20,
     radius: 15,
     speed: 80 + Math.random() * 100,
@@ -31,10 +33,17 @@ function update(dt) {
 
   // 눈 이동
   for (let snow of snows) {
-    snow.y += snow.speed * dt;      // 아래로 떨어짐
-    snow.x -= 50 * dt;              // 왼쪽으로 이동, 속도를 줄여 공 앞으로 움직이는 느낌
-    if (snow.y > canvas.height + 30 || snow.x < -30) {
+    snow.y += snow.speed * dt;      
+    snow.x -= 50 * dt;              
+    // 눈이 공 아래로 지나가면 게임 오버
+    if (snow.y > canvas.height || snow.x < -30) {
       snow.active = false;
+      if (snow.y >= canvas.height) {
+        alert("게임 오버! 점수: " + score);
+        score = 0;
+        scoreEl.textContent = score;
+        snows.length = 0; // 모든 눈 제거
+      }
     }
   }
 
