@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 const scoreEl = document.getElementById("score");
 
 // 공
-const ball = { x: canvas.width / 2, y: 300, radius: 20 };
+const ball = { x: canvas.width / 5, y: 300, radius: 20 };
           // px/sec
 
 // 눈 배열
