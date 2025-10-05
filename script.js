@@ -4,7 +4,7 @@ const scoreEl = document.getElementById("score");
 
 // 공
 const ball = { x: canvas.width / 5, y: 300, radius: 20 };
-          // px/sec
+          // px/sec 
 
 // 눈 배열
 const snows = [];
