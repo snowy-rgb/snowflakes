@@ -3,7 +3,8 @@ const ctx = canvas.getContext("2d");
 const scoreEl = document.getElementById("score");
 
 // 공
-const ball = { x: 0, y: 300, radius: 20, speed: 120 }; // px/sec
+const ball = { x: canvas.width / 2, y: 300, radius: 20 };
+          // px/sec
 
 // 눈 배열
 const snows = [];
@@ -30,9 +31,11 @@ function update(dt) {
 
   // 눈 이동
   for (let snow of snows) {
-    snow.y += snow.speed * dt;
-    snow.x += (snow.speed - 60) * dt;
-    if (snow.y > canvas.height + 30) snow.active = false;
+    snow.y += snow.speed * dt;          // 떨어지는 속도
+    snow.x -= 100 * dt;                 // 공이 앞으로 가는 듯한 효과 (왼쪽으로 이동)
+    if (snow.y > canvas.height + 30 || snow.x < -30) {
+      snow.active = false;
+    }
   }
 
   // 안 쓰는 눈 제거
@@ -44,7 +47,7 @@ function update(dt) {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // 경로 (땅)
+  // 땅(경로)
   ctx.strokeStyle = "#55f";
   ctx.lineWidth = 4;
   ctx.beginPath();
@@ -52,7 +55,7 @@ function draw() {
   ctx.lineTo(canvas.width, ball.y);
   ctx.stroke();
 
-  // 공
+  // 공 (중앙 고정)
   ctx.fillStyle = "orange";
   ctx.beginPath();
   ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
