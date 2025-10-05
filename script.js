@@ -31,8 +31,8 @@ function update(dt) {
 
   // 눈 이동
   for (let snow of snows) {
-    snow.y += snow.speed * dt;          // 떨어지는 속도
-    snow.x -= 100 * dt;                 // 공이 앞으로 가는 듯한 효과 (왼쪽으로 이동)
+    snow.y += snow.speed * dt;      // 아래로 떨어짐
+    snow.x -= 50 * dt;              // 왼쪽으로 이동, 속도를 줄여 공 앞으로 움직이는 느낌
     if (snow.y > canvas.height + 30 || snow.x < -30) {
       snow.active = false;
     }
