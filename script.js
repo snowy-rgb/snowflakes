@@ -16,7 +16,7 @@ function spawnSnow() {
     x: Math.random() * canvas.width,
     y: -20,
     radius: 15,
-    speed: 80 + Math.random() * 40,
+    speed: 80 + Math.random() * 100,
     active: true
   });
 }
@@ -25,12 +25,13 @@ setInterval(spawnSnow, 1500); // 1.5초마다 눈 생성
 // 메인 루프
 function update(dt) {
   // 공 이동 (왼→오른쪽, 끝까지 가면 다시 왼쪽)
-  ball.x += ball.speed * dt;
-  if (ball.x > canvas.width) ball.x = 0;
+  //ball.x += ball.speed * dt;
+  //if (ball.x > canvas.width) ball.x = 0; 공 대신 눈으로 표현
 
   // 눈 이동
   for (let snow of snows) {
     snow.y += snow.speed * dt;
+    snow.x += (snow.speed - 60) * dt;
     if (snow.y > canvas.height + 30) snow.active = false;
   }
 
