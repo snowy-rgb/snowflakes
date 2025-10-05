@@ -34,7 +34,7 @@ function update(dt) {
   // 눈 이동
   for (let snow of snows) {
     snow.y += snow.speed * dt;      
-    snow.x -= 50 // * dt;              
+    snow.x -= 50 * dt;              
     // 눈이 공 아래로 지나가면 게임 오버
     if (snow.y > canvas.height || snow.x < -30) {
       snow.active = false;
