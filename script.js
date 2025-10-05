@@ -23,7 +23,7 @@ function spawnSnow() {
     active: true
   });
 }
-setInterval(spawnSnow, 1500); // 1.5초마다 눈 생성
+setInterval(spawnSnow, Math.floor(Math.random() * 1500) + 1); // 1.5초마다 눈 생성
 
 // 메인 루프
 function update(dt) {
@@ -34,7 +34,7 @@ function update(dt) {
   // 눈 이동
   for (let snow of snows) {
     snow.y += snow.speed * dt;      
-    snow.x -= 50 * dt;              
+    snow.x -= 30 * dt;              
     // 눈이 공 아래로 지나가면 게임 오버
     if (snow.y > canvas.height || snow.x < -30) {
       snow.active = false;
