@@ -14,9 +14,9 @@ let lastTime = 0;
 // 눈 
 function spawnSnow() {
   // 눈이 공 위쪽에서 생성되도록, 공 x 좌표 기준 +- 범위 지정
-  const range = 50; // 공 좌우 ±50px 범위
+  //const range = 50; // 공 좌우 ±50px 범위
   snows.push({
-    x: ball.x + (Math.random() * range * 2 - range), // ball.x - range ~ ball.x + range
+    x: ball.x + 50, // ball.x - range ~ ball.x + range
     y: -20,
     radius: 15,
     speed: 80 + Math.random() * 100,
@@ -34,7 +34,7 @@ function update(dt) {
   // 눈 이동
   for (let snow of snows) {
     snow.y += snow.speed * dt;      
-    snow.x -= 30 * dt;              
+    snow.x -= 50 * dt;              
     // 눈이 공 아래로 지나가면 게임 오버
     if (snow.y > canvas.height || snow.x < -30) {
       snow.active = false;
